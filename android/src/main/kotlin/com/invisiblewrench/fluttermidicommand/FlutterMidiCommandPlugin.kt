@@ -203,13 +203,17 @@ class FlutterMidiCommandPlugin : FlutterPlugin, ActivityAware, MethodCallHandler
       }
       "connectToDevice" -> {
         var args = call.arguments<Map<String, Any>>()
-        var device = (args["device"] as Map<String, Any>)
-//        var portList = (args["ports"] as List<Map<String, Any>>).map{
-//          Port(if (it["id"].toString() is String) it["id"].toString().toInt() else 0 , it["type"].toString())
-//        }
-        var deviceId = device["id"].toString()
-        ongoingConnections[deviceId] = result
-        connectToDevice(deviceId, device["type"].toString())
+        if (args != null) {
+          var device = (args["device"] as Map<String, Any>)
+  //        var portList = (args["ports"] as List<Map<String, Any>>).map{
+  //          Port(if (it["id"].toString() is String) it["id"].toString().toInt() else 0 , it["type"].toString())
+  //        }
+          var deviceId = device["id"].toString()
+          ongoingConnections[deviceId] = result
+          connectToDevice(deviceId, device["type"].toString())
+        } else {
+          result.error("ERROR", "Null stuff 2", null)
+        }
       }
       "disconnectDevice" -> {
         var args = call.arguments<Map<String, Any>>()
