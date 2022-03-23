@@ -217,8 +217,13 @@ class FlutterMidiCommandPlugin : FlutterPlugin, ActivityAware, MethodCallHandler
       }
       "disconnectDevice" -> {
         var args = call.arguments<Map<String, Any>>()
-        disconnectDevice(args["id"].toString())
-        result.success(null)
+        if (args != null) {
+          disconnectDevice(args["id"].toString())
+          result.success(null)
+        } else {
+          result.error("ERROR", "Null stuff 3", null)
+        }
+        
       }
       "teardown" -> {
         teardown()
