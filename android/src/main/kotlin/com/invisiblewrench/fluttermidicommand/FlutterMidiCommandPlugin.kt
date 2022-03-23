@@ -348,13 +348,13 @@ class FlutterMidiCommandPlugin : FlutterPlugin, ActivityAware, MethodCallHandler
 
 
   override fun onRequestPermissionsResult(
-          requestCode: Int,
-          permissions: Array<(out) String!>,
-          grantResults: IntArray): Boolean {
-    Log.d("FlutterMIDICommand", "Permissions code: $requestCode grantResults: $grantResults")
+          p0: Int,
+          p1: Array<(out) String!>,
+          p2: IntArray): Boolean {
+    Log.d("FlutterMIDICommand", "Permissions code: $p1 grantResults: $p2")
 
 
-    if (requestCode == PERMISSIONS_REQUEST_ACCESS_LOCATION && grantResults.get(0) == PackageManager.PERMISSION_GRANTED) {
+    if (p0 == PERMISSIONS_REQUEST_ACCESS_LOCATION && p2.get(0) == PackageManager.PERMISSION_GRANTED) {
       startScanningLeDevices()
       return true;
     } else {
