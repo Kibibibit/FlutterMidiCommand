@@ -349,7 +349,7 @@ class FlutterMidiCommandPlugin : FlutterPlugin, ActivityAware, MethodCallHandler
 
   override fun onRequestPermissionsResult(
           requestCode: Int,
-          permissions: Array<out String!>,
+          permissions: Array<out String>,
           grantResults: IntArray): Boolean {
     Log.d("FlutterMIDICommand", "Permissions code: $requestCode grantResults: $grantResults")
 
