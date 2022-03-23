@@ -165,8 +165,13 @@ class FlutterMidiCommandPlugin : FlutterPlugin, ActivityAware, MethodCallHandler
     when (call.method) {
       "sendData" -> {
         var args = call.arguments<Map<String, Any>>()
-        sendData(args!["data"] as ByteArray, args!["timestamp"] as? Long, args!["deviceId"]?.toString())
-        result.success(null)
+        if (args != null) {
+          sendData(args["data"] as ByteArray, args["timestamp"] as? Long, args["deviceId"]?.toString())
+          result.success(null)
+        } else {
+          result.error("ERROR", "Null stuff", null)
+        }
+        
       }
       "getDevices" -> {
         result.success(listOfDevices())
